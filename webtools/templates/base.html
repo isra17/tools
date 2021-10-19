@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - Isra's Webtools</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+  </head>
+  <body>
+    <header>
+      <h1>Isra's Webtools</h1>
+    </header>
+    <main>
+      {% for message in get_flashed_messages() %}
+      <article>
+        <aside>{{ message }}</aside>
+      </article>
+      {% endfor %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Merge CSVs</h2>
+  <p>
+    Upload a zip file with many CSV files.
+    <br />
+    This tools will merge all CSV files together.
+  </p>
+
+  <form action=/api/csv/merge method=post enctype=multipart/form-data>
+    <div>
+      <input type=file name=file>
+    </div>
+    <div>
+      <input type=submit value=Upload>
+    </div>
+  </form>
+
+{% endblock %}
