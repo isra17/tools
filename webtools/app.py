@@ -37,11 +37,11 @@ def merge():
         with ZipFile(upload_name) as zipfile:
             for zipinfo in zipfile.infolist():
                 with zipfile.open(zipinfo) as csvfile:
-                    reader = csv.DictReader(io.TextIOWrapper(csvfile))
+                    reader = csv.DictReader(io.TextIOWrapper(csvfile, errors="surrogateescape"))
                     fieldnames.extend(f for f in reader.fieldnames if f not in fieldnames)
                     data.extend(reader)
 
-    data_file = io.TextIOWrapper(io.BytesIO(), write_through=True)
+    data_file = io.TextIOWrapper(io.BytesIO(), errors="surrogateescape", write_through=True)
     writer = csv.DictWriter(data_file, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(data)
