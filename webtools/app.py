@@ -36,6 +36,9 @@ def merge():
         file.save(upload_name)
         with ZipFile(upload_name) as zipfile:
             for zipinfo in zipfile.infolist():
+                if "/" in zipinfo.filename or not zipinfo.filename.endswith(".csv"):
+                    continue
+
                 with zipfile.open(zipinfo) as csvfile:
                     try:
                         reader = csv.DictReader(io.TextIOWrapper(csvfile, errors="surrogateescape"))
